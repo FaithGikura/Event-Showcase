@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Showcase</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Admin Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <% if (typeof featuredEvent !== 'undefined' && featuredEvent) { %>
+        <marquee class="featured-marquee">
+            Featured Event: <%= featuredEvent.name %> - <%= new Date(featuredEvent.date).toLocaleDateString() %>
+        </marquee>
+
+        <section id="featured-event">
+            <div class="featured-event-card">
+                <img src="<%= featuredEvent.image_url %>" alt="<%= featuredEvent.name %>">
+                <div class="featured-event-content">
+                    <h2><%= featuredEvent.name %></h2>
+                    <p><%= featuredEvent.description %></p>
+                    <p class="event-date">
+                        <strong>Date:</strong> <%= new Date(featuredEvent.date).toLocaleDateString() %>
+                    </p>
+                </div>
+            </div>
+        </section>
+    <% } %>
+    
+
+    <section id="photo-gallery">
+        <h2>Event Gallery</h2>
+        <div class="gallery-container">
+            <% if (typeof pastEvents !== 'undefined' && pastEvents.length > 0) { %>
+                <% pastEvents.forEach(event => { %>
+                    <div class="gallery-item" onclick="openModal('<%= event.id %>')">
+                        <img src="<%= event.image_url %>" alt="<%= event.name %>">
+                        <div class="gallery-item-info">
+                            <h3><%= event.name %></h3>
+                            <p><%= new Date(event.date).toLocaleDateString() %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p class="no-events">No past events to display.</p>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="eventModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Event Image">
+            <div class="modal-details">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDate"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Event Showcase. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openModal(eventId) {
+            fetch(`/event/${eventId}`)
+                .then(response => response.json())
+                .then(event => {
+                    document.getElementById('modalImage').src = event.image_url;
+                    document.getElementById('modalTitle').textContent = event.name;
+                    document.getElementById('modalDate').textContent = 
+                        'Date: ' + new Date(event.date).toLocaleDateString();
+                    document.getElementById('modalDescription').textContent = event.description;
+                    document.getElementById('eventModal').style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('eventModal').style.display = 'none';
+        }
+
+       
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
