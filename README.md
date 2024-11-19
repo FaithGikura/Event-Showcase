@@ -18,7 +18,8 @@ You will also need to update the database connection details in `app.js` to matc
 After everything is set up, run the app with `npm start` and navigate to `http://localhost:3000` in your browser. The admin dashboard is accessible at `http://localhost:3000/admin`, where you can add new events, edit or delete existing ones. For adding events, images are uploaded through the admin form using the `Multer` middleware, and images are stored in the `public/uploads` folder.
 
 
-###Other details
+##Other details
+
 The homepage displays the featured event, nearest upcoming event, and past event gallery. The event gallery allows users to click on an image to view more details in a modal, including the event’s name, date, and description.
 If you want to contribute to this project, feel free to fork the repository and submit pull requests for new features or bug fixes.
 This project uses Node.js, Express.js, MySQL, EJS for templating, and Multer for image uploading.
