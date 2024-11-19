@@ -1,6 +1,6 @@
 # Event-Showcase
 Welcome to the Event Showcase! This is a Node.js-based web application designed to display and manage events. It features a homepage where users can view featured events, upcoming events, and a gallery of past events. 
-#The admin dashboard provides easy management of event content, including the ability to add, edit, or delete events. The gallery showcases events with their images, and each event has a detailed modal view that users can open to get more information.
+**  The admin dashboard provides easy management of event content, including the ability to add, edit, or delete events. The gallery showcases events with their images, and each event has a detailed modal view that users can open to get more information.**
 #To get started, you will need to have Node.js and MySQL installed on your system. 
 You can clone this repository using `git clone https://github.com/FaithGikura/event-showcase.git` and run `npm install` to install the necessary dependencies. 
 Once the dependencies are installed, configure your MySQL database by creating a new database called `event_showcase` and setting up a table for events with the following SQL: `CREATE TABLE events (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT NOT NULL, date DATETIME NOT NULL, image_url VARCHAR(255), featured BOOLEAN DEFAULT FALSE);`.
