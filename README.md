@@ -10,7 +10,7 @@ To get started, you will need to have Node.js and MySQL installed on your system
 - Install [MySQL](https://www.mysql.com/) on your machine.
 
   
- ###Installing
+ ##Installing
 
 You can clone this repository using `git clone https://github.com/FaithGikura/event-showcase.git` and run `npm install` to install the necessary dependencies. 
 Once the dependencies are installed, configure your MySQL database by creating a new database called `event_showcase` and setting up a table for events with the following SQL: `CREATE TABLE events (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT NOT NULL, date DATETIME NOT NULL, image_url VARCHAR(255), featured BOOLEAN DEFAULT FALSE);`.
